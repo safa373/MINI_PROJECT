@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+{% extends 'admin/Admin_index.html' %}
+{% block body %}
+<body>
+<form id="form1" name="form1" method="post" action="/myapp/editstudentpost/" enctype="multipart/form-data">
+    {% csrf_token %}
+  <table class="table table-bordered table-hover">
+    <tr>
+        <input type="hidden" name="id" value="{{ data1.id }}">
+      <th>Name</th>
+      <td>
+      <input type="text" name="textfield" id="textfield"  value="{{ data1.name }}"class="form-control"required pattern="[A-Z a-z]+"/></td>
+    </tr>
+    <tr>
+      <th>Phn no</th>
+      <td>
+      <input type="text" name="textfield2" id="textfield2" value="{{ data1.phonenumber }}" class="form-control"required/></td>
+    </tr>
+    <tr>
+      <th>Email</th>
+      <td>
+      <input type="email" name="textfield3" id="textfield3" value="{{ data1.emailid }}"class="form-control" required/></td>
+    </tr>
+    <tr>
+      <th>Dob</th>
+      <td>
+      <input type="date" max="{{ date|date:'Y-m-d' }}" name="textfield4" id="textfield4" value="{{ data1.dob|date:'Y-m-d' }}"class="form-control" required/></td>
+    </tr>
+    <tr>
+      <th>Gender</th>
+      <td><p>
+        <label>
+          <input type="radio" name="RadioGroup1" value="male" id="RadioGroup1_0" {% if data1.gender == 'male' %}checked{% endif %}/>
+          male</label>
+        <br />
+        <label>
+          <input type="radio" name="RadioGroup1" value="female" id="RadioGroup1_1" {% if data1.gender == 'female' %}checked{% endif %} />
+          female</label>
+        <br />
+        <label>
+          <input type="radio" name="RadioGroup1" value="others" id="RadioGroup1_2" {% if data1.gender == 'others' %}checked{% endif %}/>
+          others</label>
+        <br />
+      </p></td>
+    </tr>
+    <tr>
+      <th>Photo</th>
+      <td>
+          <img src="{{ data1.photo }}" height="100px "width="100px" alt=""/>
+      <input type="file" name="textfield5" id="textfield5"class="form-control" /></td>
+    </tr>
+    <tr>
+      <th>Housename</th>
+      <td>
+      <input type="text" name="textfield6" id="textfield6" value="{{ data1.housename }}"class="form-control"required/></td>
+    </tr>
+    <tr>
+      <th>Place</th>
+      <td>
+      <input type="text" name="textfield7" id="textfield7" value="{{ data1.place }}"class="form-control" required/></td>
+    </tr>
+    <tr>
+      <td>city</td>
+      <td><label for="textfield8"></label>
+      <input type="text" name="textfield8" id="textfield8" value="{{ data1.city }}" class="form-control"required/></td>
+    </tr>
+    <tr>
+      <th>Post</th>
+      <td>
+      <input type="text" name="textfield9" id="textfield9" value="{{ data1.post }}"class="form-control"required/></td>
+    </tr>
+    <tr>
+      <th>Pin</th>
+      <td>
+      <input type="text" name="textfield10" id="textfield10" value="{{ data1.pin }}"class="form-control"required pattern="[0-9]{6}" maxlength="6"/></td>
+    </tr>
+    <tr>
+      <th>State</th>
+      <td>
+      <input type="text" name="textfield11" id="textfield11" value="{{ data1.state }}"class="form-control"required/></td>
+    </tr>
+    <tr>
+      <th>Guardian name</th>
+      <td>
+      <input type="text" name="textfield12" id="textfield12" value="{{ data1.guardianname }}"class="form-control" required pattern="[A-Z a-z]+"/></td>
+    </tr>
+    <tr>
+      <th>Guardian email</th>
+      <td>
+      <input type="email" name="textfield13" id="textfield13" value="{{ data1.guardianemail }}" class="form-control"required/></td>
+    </tr>
+    <tr>
+      <th>Guardian phn no</th>
+      <td>
+      <input type="text" name="textfield14" id="textfield14" value="{{ data1.guardianphonenumber}}" class="form-control"required pattern="[9876][0-9]{9}" maxlength="10"/></td>
+    </tr>
+    <tr>
+      <th>Course</th>
+      <td>
+        <select name="select" id="select"class="form-control">
+                        <option value="{{ data1.COURSE.id }}">{{ data1.COURSE.coursename }}</option>
+
+            {% for i in data %}
+                <option value="{{ i.id }}">{{ i.coursename }}</option>
+            {% endfor %}
+        </select>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td><input type="submit" name="button" id="button" value="Submit"class="btn btn-success" /></td>
+    </tr>
+  </table>
+</form>
+{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+{% extends 'admin/Admin_index.html' %}
+{% block body %}
+<body>
+<form id="form1" name="form1" method="post" action="/myapp/editstaffpost/"enctype="multipart/form-data">
+    {% csrf_token %}
+  <table class="table table-bordered table-hover">
+      <input type="hidden" name="id1" value="{{ data.id }}">
+    <tr>
+      <td width="53">name</td>
+      <td width="164"><label for="textfield"></label>
+      <input type="text" name="name" value="{{ data.name }}"class="form-control"required  pattern="[A-Z a-z]+">
+      </td>
+    </tr>
+    <tr>
+      <td>gender</td>
+      <td><p>
+        <label>
+          <input type="radio" name="RadioGroup1" value="female" id="RadioGroup1_0" {% if data.gender == 'male' %}checked{% endif %} />
+          female</label>
+        <br />
+        <label>
+          <input type="radio" name="RadioGroup1" value="male" id="RadioGroup1_1" {% if data.gender == 'female' %}checked{% endif %}/>
+          male</label>
+        <label for="textfield3"></label>
+        <br />
+        <label>
+          <input type="radio" name="RadioGroup1" value="others" id="RadioGroup1_2"{% if data.gender == 'others' %}checked{% endif %} />
+          others</label>
+        <br />
+      </p></td>
+    </tr>
+    <tr>
+      <td>photo</td>
+      <td><label for="textfield2"></label> <input type="file" name="filefield" id="textfield5" class="form-control"/>
+      <img src="{{ data.photo }}"height="100"width="100" alt=""/></td>
+
+    </tr>
+    <tr>
+      <td>place</td>
+      <td><label for="textfield2"></label>
+      <input type="text" name="textfield" id="textfield2" value="{{data.place}}"class="form-control"required /></td>
+    </tr>
+    <tr>
+      <td>post</td>
+      <td><label for="textfield3"></label>
+      <input type="text" name="textfield2" id="textfield3" value="{{ data.post}}" class="form-control"required/></td>
+    </tr>
+    <tr>
+      <td>pin</td>
+      <td><label for="textfield4"></label>
+      <input type="text" name="textfield3" id="textfield4" value="{{ data.pin }}"class="form-control"required pattern="[0-9]{6}" maxlength="6"/></td>
+    </tr>
+    <tr>
+      <td>district</td>
+      <td><label for="textfield5"></label>
+      <input type="text" name="textfield4" id="textfield5" value="{{data.district}}"class="form-control"required /></td>
+    </tr>
+    <tr>
+      <td>state</td>
+      <td><label for="textfield6"></label>
+      <input type="text" name="textfield5" id="textfield6" value="{{ data.state }}"class="form-control"required/></td>
+    </tr>
+    <tr>
+      <td>email</td>
+      <td><label for="textfield7"></label>
+      <input type="email" name="textfield6" id="textfield7" value="{{ data.emailid }}" class="form-control"required/></td>
+    </tr>
+    <tr>
+      <td>phn no</td>
+      <td><label for="textfield8"></label>
+      <input type="text" name="textfield7" id="textfield8" value="{{ data.phonenumber }}"class="form-control"required pattern="[9876][0-9]{9}" maxlength="10"/></td>
+    </tr>
+    <tr>
+      <td>dob</td>
+      <td><label for="textfield9"></label>
+      <input type="date" name="textfield8" id="textfield9" value="{{ data.dob|date:"Y-m-d" }}" class="form-control"required/></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td><input type="submit" name="button" id="button" value="Submit"class="btn btn-success" /></td>
+    </tr>
+  </table>
+</form>
+{% endblock %}
+
+</body>
+</html>

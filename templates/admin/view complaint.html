@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+{% extends 'admin/Admin_index.html' %}
+{% block body %}
+<body>
+<form id="form1" name="form1" method="post" action="/myapp/viewcomplaintpost/#mu-features">
+{% csrf_token %}
+  <table class="pull-left">
+    <tr>
+      <td height="26">from</td>
+      <td><label for="textfield"></label>
+      <input type="date" name="textfield" id="textfield"class="form-control" required/></td>
+      <td>to</td>
+      <td><label for="textfield2"></label>
+      <input type="date" name="textfield2" id="textfield2" class="form-control" required/></td>
+      <td><input type="submit" name="button" id="button" value="Search"class="btn btn-success" /></td>
+    </tr>
+  </table>
+  <table class="table table-bordered table-hover">
+    <tr>
+      <td>SL</td>
+      <td>date</td>
+      <td>complaint</td>
+
+      <td>parent</td>
+         <td>status</td>
+         <td>replay</td>
+{#      <td>&nbsp;</td>#}
+{#      <td>&nbsp;</td>#}
+    </tr>
+      {% for i in data %}
+    <tr>
+      <td>{{ forloop.counter }}</td>
+      <td>{{ i.date }}&nbsp;</td>
+      <td>{{ i.complaint }}</td>
+        <td>&nbsp;{{ i.LOGIN.username }}</td>
+      <td>&nbsp;{{ i.status }}</td>
+      <td>
+          {% if i.status == 'pending' %}
+          <a href="/myapp/sendreply/{{ i.id }}#mu-features" class="btn btn-success">replay</a>
+      {% else %}
+          {{ i.reply }}
+          {% endif %}
+      </td>
+
+
+{#      <td><a href="#">edit</a></td>#}
+{#      <td><a href="#">delete</a></td>#}
+    </tr>
+      {% endfor %}
+  </table>
+  <p>&nbsp;</p>
+</form>
+{% endblock %}
+
+</body>
+</html>

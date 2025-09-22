@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+{% extends 'admin/Admin_index.html' %}
+{% block body %}
+<body>
+<form action="/myapp/adm_takeaction_post/#mu-features" method="post">
+    {% csrf_token %}
+  <table class="table table-bordered table-hover">
+        <tr>
+            <input type="hidden" name="id" value="{{ id }}">
+            <th>Action</th>
+            <td><input type="text" name="action"class="form-control"required></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Add" class="btn btn-success"></td>
+        </tr>
+    </table>
+</form>
+{% endblock %}
+
+</body>
+</html>

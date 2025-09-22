@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+{% extends 'admin/Admin_index.html' %}
+{% block body %}
+<body>
+<form id="form1" name="form1" method="post" action="/myapp/addcoursepost/#mu-features">
+{% csrf_token %}
+  <table class="table table-bordered table-hover">
+    <tr>
+      <th>Department</th>
+      <td>
+        <select name="select" id="select"class="form-control">
+            {% for i in data %}
+                <option value="{{ i.id }}">{{ i.departmentname }}</option>
+            {% endfor %}
+        </select>
+    </tr>
+    <tr>
+      <th>Semester</th>
+      <td>
+      <select name="select2" id="select2"class="form-control">
+          <option value="1">semester1</option>
+          <option value="2">semester2</option>
+          <option value="3">semester3</option>
+          <option value="4">semester4</option>
+          <option value="5">semester5</option>
+          <option value="6">semester6</option>
+      </select></td>
+    </tr>
+    <tr>
+      <th>Course</th>
+      <td>
+      <input type="text" name="textfield3" id="textfield3"class="form-control" required/></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td><input type="submit" name="button" id="button" value="Submit"class="btn btn-success" /></td>
+    </tr>
+  </table>
+</form>
+{% endblock %}
+
+</body>
+</html>

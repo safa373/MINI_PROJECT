@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+{% extends 'admin/Admin_index.html' %}
+{% block body %}
+<body>
+<form id="form1" name="form1" method="post" action="/myapp/viewcoursepost/#mu-features">
+{% csrf_token %}
+  <table class="px pull-left">
+    <tr>
+      <td>
+      <input type="text" name="textfield" placeholder="Serach by name..." id="textfield"class="form-control" required/></td>
+      <td><input type="submit" name="button" id="button" value="search"class="btn btn-info" /></td>
+    </tr>
+  </table>
+  <table class="table table-bordered table-hover">
+    <tr>
+      <th>SL</th>
+      <th>Department</th>
+      <th>Course</th>
+      <th>Semester</th>
+      <th>&nbsp;</th>
+      <th>&nbsp;</th>
+    </tr>
+      {% for i in data %}
+    <tr>
+      <td>&nbsp;{{ forloop.counter }}</td>
+      <td>{{ i.DEPARTMENT.departmentname }}&nbsp;</td>
+      <td>{{ i.coursename }}&nbsp;</td>
+      <td>{{ i.semester }}&nbsp;</td>
+      <td><a href="/myapp/editcourse/{{ i.id }}#mu-features" class="btn btn-success">Edit</a></td>
+      <td><a href="/myapp/deletecourse/{{ i.id }}" class="btn btn-danger" onclick="return confirm('Are You Sure!!')">Delete</a></td>
+    </tr>
+      {% endfor %}
+  </table>
+  <p>&nbsp;</p>
+</form>
+{% endblock %}
+
+</body>
+</html>
